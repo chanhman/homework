@@ -1,14 +1,14 @@
-import { Link } from "@remix-run/react";
+import { Link } from '@remix-run/react';
 
 export default function Todos() {
   return (
     <div>
-      Todos
-
-      <br />
-      <Link to="/todos/test">test</Link>
-
-      <br />Add list of todos next
+      <h2>Todos</h2>
+      <ul>
+        <li>
+          <Link to="/todos/test">test</Link>
+        </li>
+      </ul>
     </div>
-  )
+  );
 }
