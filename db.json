@@ -19,8 +19,13 @@
   "todos": [
     {
       "title": "test!!!",
-      "completed": true,
+      "completed": false,
       "id": 1
+    },
+    {
+      "title": "Test2",
+      "completed": true,
+      "id": 2
     }
   ]
 }

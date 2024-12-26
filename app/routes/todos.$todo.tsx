@@ -1,7 +1,7 @@
 import { Outlet, useParams } from '@remix-run/react';
 import Tabs from '~/components/Tabs';
 
-export default function Todo() {
+export default function TodoLayout() {
   const params = useParams();
   const tabs = [
     {
