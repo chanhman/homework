@@ -15,7 +15,6 @@ export default function TodoLayout() {
   ];
   return (
     <div>
-      LAYOUT
       <Tabs data={tabs} />
       <Outlet />
     </div>
