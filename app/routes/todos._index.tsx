@@ -39,7 +39,6 @@ export default function Todos() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  console.log(formData);
   const title = String(formData.get('title'));
   const response = await fetch('http://localhost:3000/todos/', {
     method: 'POST',
@@ -48,6 +47,6 @@ export async function action({ request }: ActionFunctionArgs) {
     },
     body: JSON.stringify({ title, completed: false }),
   });
-  console.log(response);
-  return null;
+
+  return { success: response.ok };
 }

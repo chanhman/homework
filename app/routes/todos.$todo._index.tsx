@@ -10,7 +10,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function Todo() {
   const loaderData = useLoaderData<typeof loader>();
-  console.log(loaderData);
+
   return (
     <div>
       {loaderData.title}
