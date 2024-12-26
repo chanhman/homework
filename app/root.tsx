@@ -27,6 +27,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <li>
               <Link to="/todos">Todos</Link>
             </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
           </ul>
         </nav>
         {children}
