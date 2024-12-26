@@ -2,9 +2,7 @@ import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { Form, useLoaderData, useParams } from '@remix-run/react';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${params.todo}`
-  );
+  const response = await fetch(`http://localhost:3000/todos/${params.todo}`);
   const json = await response.json();
 
   return json;
@@ -29,6 +27,7 @@ export default function TodoEdit() {
         />
         <br />
         <label htmlFor="completed">Completed</label>
+        <input type="hidden" name="completed" value="false" />
         <input
           type="checkbox"
           name="completed"

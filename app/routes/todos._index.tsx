@@ -1,7 +1,8 @@
-import { Link, useLoaderData } from '@remix-run/react';
+import { ActionFunctionArgs } from '@remix-run/node';
+import { Form, Link, useLoaderData } from '@remix-run/react';
 
 export const loader = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const response = await fetch('http://localhost:3000/todos');
   const json = await response.json();
 
   return json;
@@ -20,6 +21,11 @@ export default function Todos() {
   return (
     <div>
       <h2>Todos</h2>
+      <Form method="post">
+        <label htmlFor="title">Title</label>
+        <input type="text" name="title" id="title" required />
+        <button type="submit">Add</button>
+      </Form>
       <ul>
         {loaderData.map((todo: Todo) => (
           <li key={todo.id}>
@@ -29,4 +35,19 @@ export default function Todos() {
       </ul>
     </div>
   );
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  const formData = await request.formData();
+  console.log(formData);
+  const title = String(formData.get('title'));
+  const response = await fetch('http://localhost:3000/todos/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title, completed: false }),
+  });
+  console.log(response);
+  return null;
 }
