@@ -1,17 +1,18 @@
-import { Link, useParams } from '@remix-run/react';
+import { Link, Outlet } from '@remix-run/react';
 
 export default function Todo() {
-  const params = useParams();
-
   return (
     <div>
-      <h2>{params.todo}</h2>
+      LAYOUT
       <ul>
-        <li>Detail</li>
+        <li>
+          <Link to="/todos/test">Detail</Link>
+        </li>
         <li>
           <Link to="/todos/test/edit">Edit</Link>
         </li>
       </ul>
+      <Outlet />
     </div>
   );
 }
