@@ -35,7 +35,6 @@ export default function TodoEdit() {
         />
         <br />
         <label htmlFor="completed">Completed</label>
-        <input type="hidden" name="completed" value="false" />
         <input
           type="checkbox"
           name="completed"
@@ -54,10 +53,11 @@ export default function TodoEdit() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  console.log(formData);
   const command = String(formData.get('command'));
   const id = String(formData.get('id'));
   const title = String(formData.get('title'));
+  const completed = String(formData.get('completed'));
+  const isCompleted = completed === 'true';
 
   if (command === 'delete') {
     const response = await fetch(`http://localhost:3000/todos/${id}`, {
@@ -76,8 +76,12 @@ export async function action({ request }: ActionFunctionArgs) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id, title }),
+    body: JSON.stringify({ id, title, completed: isCompleted }),
   });
+
+  if (response.ok) {
+    return redirect('/todos');
+  }
 
   return { success: response.ok };
 }
