@@ -1,19 +1,22 @@
-import { Link, Outlet, useParams } from '@remix-run/react';
+import { Outlet, useParams } from '@remix-run/react';
+import Tabs from '~/components/Tabs';
 
 export default function Todo() {
   const params = useParams();
-
+  const tabs = [
+    {
+      to: `/todos/${params.todo}`,
+      label: 'Detail',
+    },
+    {
+      to: `/todos/${params.todo}/edit`,
+      label: 'Edit',
+    },
+  ];
   return (
     <div>
       LAYOUT
-      <ul>
-        <li>
-          <Link to={`/todos/${params.todo}`}>Detail</Link>
-        </li>
-        <li>
-          <Link to={`/todos/${params.todo}/edit`}>Edit</Link>
-        </li>
-      </ul>
+      <Tabs data={tabs} />
       <Outlet />
     </div>
   );
