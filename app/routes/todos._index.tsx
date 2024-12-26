@@ -7,17 +7,25 @@ export const loader = async () => {
   return json;
 };
 
-export default function Todos() {
-  const loaderData = useLoaderData();
-  console.log(loaderData);
+type Todo = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+};
 
+export default function Todos() {
+  const loaderData = useLoaderData<typeof loader>();
+  console.log(loaderData);
   return (
     <div>
       <h2>Todos</h2>
       <ul>
-        <li>
-          <Link to="/todos/test">test</Link>
-        </li>
+        {loaderData.map((todo: Todo) => (
+          <li key={todo.id}>
+            <Link to={`/todos/${todo.id}`}>{todo.title}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
