@@ -1,20 +1,34 @@
 import { ActionFunctionArgs } from '@remix-run/node';
 import { Form, Outlet } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 import Tabs from '~/components/Tabs';
 
+const tabs = [
+  {
+    to: '/todos',
+    label: 'Todos',
+  },
+  {
+    to: '/todos/completed',
+    label: 'Completed',
+  },
+];
+
 export default function TodosLayout() {
-  const tabs = [
-    {
-      to: '/todos',
-      label: 'Todos',
-    },
-    {
-      to: '/todos/completed',
-      label: 'Completed',
-    },
-  ];
+  const [backgroundColor, setBackgroundColor] = useState('blue');
+
+  useEffect(() => {
+    const backgroundColor = window.localStorage.getItem('background');
+    setBackgroundColor(backgroundColor || '');
+  }, []);
+
+  const localStorageSet = () => {
+    window.localStorage.setItem('background', 'red');
+  };
+
   return (
-    <div>
+    <div style={{ backgroundColor }}>
+      <button onClick={localStorageSet}>Set background color</button>
       <Tabs data={tabs} />
       <Form method="post">
         <label htmlFor="title">Title</label>
