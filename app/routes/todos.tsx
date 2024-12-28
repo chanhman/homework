@@ -28,6 +28,7 @@ export default function TodosLayout() {
 
   return (
     <div style={{ backgroundColor }}>
+      <h1>Test!</h1>
       <button onClick={localStorageSet}>Set background color</button>
       <Tabs data={tabs} />
       <Form method="post">
