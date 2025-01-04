@@ -30,6 +30,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <li>
               <Link to="/profile">Profile</Link>
             </li>
+            <li>
+              <Link to="/local-storage">Local Storage</Link>
+            </li>
           </ul>
         </nav>
         {children}
